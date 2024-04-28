@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+
+<!-- Mirrored from demo.bootstrapdash.com/justdo/template/demo/vertical-dark-sidebar/pages/tables/js-grid.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 10 Oct 2023 18:28:40 GMT -->
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>JustDo Admin</title>
+	<!-- plugins:css -->
+	<link rel="stylesheet" th:href="@{/vendors/admin/ti-icons/css/themify-icons.css}">
+	<link rel="stylesheet" th:href="@{/vendors/admin/css/vendor.bundle.base.css}">
+	<!-- endinject -->
+	<!-- plugin css for this page -->
+	<link rel="stylesheet" th:href="@{/vendors/admin/jsgrid/jsgrid.min.css}">
+	<link rel="stylesheet" th:href="@{/vendors/admin/jsgrid/jsgrid-theme.min.css}">
+	<!-- End plugin css for this page -->
+	<!-- inject:css -->
+	<link rel="stylesheet" th:href="@{/css/admin/vertical-layout-light/style.css}">
+	<!-- endinject -->
+	<link rel="shortcut icon" th:href="@{/images/favicon.png}" />
+</head>
+
+<body>
+	<!-- partial:../../partials/_settings-panel.html -->
+	<div class="theme-setting-wrapper" th:fragment="partial">
+		<div id="settings-trigger"><i class="ti-settings"></i></div>
+		<div id="theme-settings" class="settings-panel">
+			<i class="settings-close ti-close"></i>
+			<p class="settings-heading">SIDEBAR SKINS</p>
+			<div class="sidebar-bg-options" id="sidebar-light-theme">
+				<div class="img-ss rounded-circle bg-light border me-3"></div>Light
+			</div>
+			<div class="sidebar-bg-options selected" id="sidebar-dark-theme">
+				<div class="img-ss rounded-circle bg-dark border me-3"></div>Dark
+			</div>
+			<p class="settings-heading mt-2">HEADER SKINS</p>
+			<div class="color-tiles mx-0 px-4">
+				<div class="tiles success"></div>
+				<div class="tiles warning"></div>
+				<div class="tiles danger"></div>
+				<div class="tiles light"></div>
+				<div class="tiles info"></div>
+				<div class="tiles dark"></div>
+				<div class="tiles default"></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Scripts -->
+	<script th:src="@{/vendors/admin/js/vendor.bundle.base.js}"></script>
+	<!-- endinject -->
+	<!-- Plugin js for this page -->
+	<script th:src="@{/vendors/admin/jsgrid/jsgrid.min.js}"></script>
+	<!-- End plugin js for this page -->
+	<!-- inject:js -->
+	<script th:src="@{/js/admin/off-canvas.js}"></script>
+	<script th:src="@{/js/admin/hoverable-collapse.js}"></script>
+	<script th:src="@{/js/admin/template.js}"></script>
+	<script th:src="@{/js/admin/settings.js}"></script>
+	<script th:src="@{/js/admin/todolist.js}"></script>
+	<!-- endinject -->
+	<!-- Custom js for this page-->
+	<script th:src="@{/js/admin/js-grid.js}"></script>
+	<script th:src="@{/js/admin/db.js}"></script>
+</body>

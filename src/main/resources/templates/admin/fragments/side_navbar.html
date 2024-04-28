@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<link href="dist/images/logo.svg" rel="shortcut icon">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Boleto Film Booking Website.">
+	<meta name="keywords" content="boleto, film booking website">
+	<meta name="author" content="LEFT4CODE">
+	<title>Boleto Movie Tickets Booking Website</title>
+	<!-- BEGIN: CSS Assets-->
+	<link rel="stylesheet" th:href="@{/css/admin/app.css}" />
+	<!-- END: CSS Assets-->
+</head>
+
+<body class="py-5">
+	<!-- BEGIN: Side Menu -->
+	<nav class="side-nav" th:fragment="side_navbar">
+		<a href="#" class="intro-x flex items-center pl-5 pt-4">
+			<img alt="Midone - HTML Admin Template" class="w-6" th:src="@{/images/admin/logo.svg}">
+			<span class="hidden xl:block text-white text-lg ml-3"> Boleto </span>
+		</a>
+		<div class="side-nav__devider my-6"></div>
+		<ul th:block sec:authorize="hasAnyRole('ADMIN', 'MANAGER', 'EMPLOYEE')">
+			<li th:block sec:authorize="hasAnyRole('ADMIN', 'MANAGER', 'EMPLOYEE')">
+				<a id="1" th:href="@{/ad/1/home}" class="side-menu side-menu--active">
+					<div class="side-menu__icon"> <i data-lucide="home"></i> </div>
+					<div class="side-menu__title">
+						Dashboard
+					</div>
+				</a>
+			</li>
+
+			<li th:block sec:authorize="hasRole('ADMIN')">
+				<a id="2" href="javascript:;" class="side-menu">
+					<div class="side-menu__icon"> <i data-lucide="users"></i> </div>
+					<div class="side-menu__title"> Users Management <div class="side-menu__sub-icon"> <i
+								data-lucide="chevron-down"></i> </div>
+					</div>
+				</a>
+
+				<ul class="">
+					<li>
+						<a th:href="@{/ad/2/um}" class="side-menu" style="margin-left: 35px;">
+							<div class="side-menu__icon"> <i data-lucide="corner-down-right"></i> </div>
+							<div class="side-menu__title"> User List </div>
+						</a>
+					</li>
+				</ul>
+			</li>
+
+			<li th:block sec:authorize="hasAnyRole('ADMIN', 'MANAGER')">
+				<a id="3" href="javascript:;" class="side-menu">
+					<div class="side-menu__icon"> <i data-lucide="compass"></i> </div>
+					<div class="side-menu__title">
+						Cities Management
+						<div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
+					</div>
+				</a>
+
+				<ul class="">
+					<li>
+						<a th:href="@{/mn/3/cm}" class="side-menu" style="margin-left: 35px;">
+							<div class="side-menu__icon"> <i data-lucide="corner-down-right"></i> </div>
+							<div class="side-menu__title"> Cities List </div>
+						</a>
+					</li>
+				</ul>
+			</li>
+
+			<li th:block sec:authorize="hasAnyRole('ADMIN', 'MANAGER')">
+				<a id="4" href="javascript:;" class="side-menu">
+					<div class="side-menu__icon"> <i data-lucide="database"></i> </div>
+					<div class="side-menu__title">
+						Cinemas Management
+						<div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
+					</div>
+				</a>
+
+				<ul class="">
+					<li>
+						<a th:href="@{/mn/4/ci-mn}" class="side-menu" style="margin-left: 35px;">
+							<div class="side-menu__icon"> <i data-lucide="corner-down-right"></i> </div>
+							<div class="side-menu__title"> Cinemas List </div>
+						</a>
+					</li>
+				</ul>
+			</li>
+
+			<li th:block sec:authorize="hasAnyRole('ADMIN', 'MANAGER')">
+				<a id="5" href="javascript:;" class="side-menu">
+					<div class="side-menu__icon"> <i data-lucide="video"></i> </div>
+					<div class="side-menu__title">
+						Cinema Rooms Management
+						<div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
+					</div>
+				</a>
+
+				<ul class="">
+					<li>
+						<a th:href="@{/mn/5/ci-r-mn}" class="side-menu" style="margin-left: 35px;">
+							<div class="side-menu__icon"> <i data-lucide="corner-down-right"></i> </div>
+							<div class="side-menu__title"> Cinema Rooms List </div>
+						</a>
+					</li>
+				</ul>
+			</li>
+
+			<li th:block sec:authorize="hasAnyRole('ADMIN', 'MANAGER')">
+				<a id="6" href="javascript:;" class="side-menu">
+					<div class="side-menu__icon"> <i data-lucide="inbox"></i> </div>
+					<div class="side-menu__title">
+						Room Seats Management
+						<div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
+					</div>
+				</a>
+
+				<ul class="">
+					<li>
+						<a th:href="@{/mn/6/r-seat-mn}" class="side-menu" style="margin-left: 35px;">
+							<div class="side-menu__icon"> <i data-lucide="corner-down-right"></i> </div>
+							<div class="side-menu__title"> Room Seats List </div>
+						</a>
+					</li>
+				</ul>
+			</li>
+
+			<li th:block sec:authorize="hasAnyRole('ADMIN', 'MANAGER')">
+				<a id="7" href="javascript:;" class="side-menu">
+					<div class="side-menu__icon"> <i data-lucide="briefcase"></i> </div>
+					<div class="side-menu__title">
+						Categories Management
+						<div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
+					</div>
+				</a>
+
+				<ul class="">
+					<li>
+						<a th:href="@{/mn/7/cate-mn}" class="side-menu" style="margin-left: 35px;">
+							<div class="side-menu__icon"> <i data-lucide="corner-down-right"></i> </div>
+							<div class="side-menu__title"> Categories List </div>
+						</a>
+					</li>
+				</ul>
+			</li>
+
+			<li th:block sec:authorize="hasAnyRole('ADMIN', 'MANAGER')">
+				<a id="8" href="javascript:;" class="side-menu">
+					<div class="side-menu__icon"> <i data-lucide="film"></i> </div>
+					<div class="side-menu__title">
+						Films Management
+						<div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
+					</div>
+				</a>
+
+				<ul class="">
+					<li>
+						<a th:href="@{/mn/8/f-mn}" class="side-menu" style="margin-left: 35px;">
+							<div class="side-menu__icon"> <i data-lucide="corner-down-right"></i> </div>
+							<div class="side-menu__title"> Films List </div>
+						</a>
+					</li>
+				</ul>
+			</li>
+
+			<li th:block sec:authorize="hasAnyRole('ADMIN', 'MANAGER', 'EMPLOYEE')">
+				<a id="9" href="javascript:;" class="side-menu">
+					<div class="side-menu__icon"> <i data-lucide="clock"></i> </div>
+					<div class="side-menu__title">
+						Shows Management
+						<div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
+					</div>
+				</a>
+
+				<ul class="">
+					<li>
+						<a th:href="@{/emp/9/show-mn}" class="side-menu" style="margin-left: 35px;">
+							<div class="side-menu__icon"> <i data-lucide="corner-down-right"></i> </div>
+							<div class="side-menu__title"> Shows List </div>
+						</a>
+					</li>
+				</ul>
+			</li>
+
+
+		</ul>
+
+
+	</nav>
+
+	<!-- BEGIN: JS Assets-->
+	<script th:src="@{/js/admin/app.js}"></script>
+	<!-- END: JS Assets-->
+
+	<script th:src="@{/js/admin/active.js}"></script>
+
+</body>

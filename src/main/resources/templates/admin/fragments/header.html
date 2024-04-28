@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!--
+Template Name: Midone - HTML Admin Dashboard Template
+Author: Left4code
+Website: http://www.left4code.com/
+Contact: muhammadrizki@left4code.com
+Purchase: https://themeforest.net/user/left4code/portfolio
+Renew Support: https://themeforest.net/user/left4code/portfolio
+License: You must have a valid license purchased only from themeforest(the above link) in order to legally use the theme for your project.
+-->
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+<!-- BEGIN: Head -->
+
+<!-- Mirrored from rubick-html.vercel.app/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 29 Nov 2023 05:24:03 GMT -->
+<!-- Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+
+<head>
+	<meta charset="utf-8">
+	<link th:href="@{/images/admin/logo.svg}" rel="shortcut icon">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description"
+		content="Midone admin is super flexible, powerful, clean & modern responsive tailwind admin template with unlimited possibilities.">
+	<meta name="keywords"
+		content="admin template, Midone Admin Template, dashboard template, flat admin template, responsive admin template, web app">
+	<meta name="author" content="LEFT4CODE">
+	<title>Boleto Movie Ticket Booking Website</title>
+	<!-- BEGIN: CSS Assets-->
+	<link rel="stylesheet" th:href="@{/css/admin/app.css}" />
+	<!-- END: CSS Assets-->
+</head>
+<!-- END: Head -->
+
+<body class="sb-nav-fixed">
+	<div th:block sec:authorize="hasAnyRole('ADMIN', 'MANAGER', 'EMPLOYEE')" th:fragment="header_nav">
+		<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+			<!-- Navbar Brand-->
+			<a class="navbar-brand ps-3" th:href="@{/ad/1/home}">Boleto Movie Ticket Booking Website</a>
+			<!-- Sidebar Toggle-->
+			<button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!">
+				<i class="fas fa-bars"></i>
+			</button>
+			<!-- Navbar Search-->
+			<form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0"></form>
+			<!-- Navbar-->
+			<ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+				<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" id="navbarDropdown" href="#"
+						role="button" data-bs-toggle="dropdown" aria-expanded="false"><i
+							class="fas fa-user fa-fw"></i></a>
+					<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+						<li><a class="dropdown-item" href="#!">Settings</a></li>
+						<li><a class="dropdown-item" href="#!">Activities</a></li>
+						<li>
+							<hr class="dropdown-divider" />
+						</li>
+						<li><a class="dropdown-item" th:href="@{/logout}">Logout</a></li>
+					</ul>
+				</li>
+			</ul>
+		</nav>
+	</div>
+</body>
+
+</html>

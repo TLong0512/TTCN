@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+	<title>Boleto Movie Ticket Booking Website - Admin</title>
+	<link th:href="@{/css/admin/style.min.css}" rel="stylesheet" />
+	<link th:href="@{/css/admin/styles.css}" rel="stylesheet" />
+	<script th:src="@{/js/admin/fontawesome-all.js}" crossorigin="anonymous"></script>
+</head>
+
+<body class="sb-nav-fixed">
+
+	<nav aria-label="Page navigation" th:fragment="navigation">
+
+		<ul class="pagination justify-content-center">
+
+			<li th:classappend="${currentPage == 0} ? disabled : ''" class="page-item">
+				<a th:href="@{/admin/categories_management?page=1}" class="page-link">First page</a>
+			</li>
+
+			<li th:each="pageNumber : ${#numbers.sequence(1, totalPage)}"
+				th:classappend="${1+currentPage == pageNumber} ? active : ''" class="page-item">
+				<a th:href="@{/admin/categories_management(page=${pageNumber})}" class="page-link"
+					th:text="${pageNumber}"></a>
+
+			</li>
+
+			<li th:classappend="${1 + currentPage == totalPages} ? disabled : ''" class="page-item">
+				<a th:href="@{/admin/categories_management(page=${totalPage})}" class="page-link">Last page</a>
+
+
+
+			</li>
+		</ul>
+
+	</nav>
+
+</body>
+
+</html>

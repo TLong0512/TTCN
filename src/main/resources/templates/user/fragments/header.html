@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+	<link rel="stylesheet" th:href="@{/css/user/bootstrap.min.css}">
+	<link rel="stylesheet" th:href="@{/css/user/all.min.css}">
+	<link rel="stylesheet" th:href="@{/css/user/animate.css}">
+	<link rel="stylesheet" th:href="@{/css/user/flaticon.css}">
+	<link rel="stylesheet" th:href="@{/css/user/magnific-popup.css}">
+	<link rel="stylesheet" th:href="@{/css/user/odometer.css}">
+	<link rel="stylesheet" th:href="@{/css/user/owl.carousel.min.css}">
+	<link rel="stylesheet" th:href="@{/css/user/owl.theme.default.min.css}">
+	<link rel="stylesheet" th:href="@{/css/user/nice-select.css}">
+	<link rel="stylesheet" th:href="@{/css/user/main.css}">
+	<link rel="stylesheet" th:href="@{/css/user/open_sans.css}">
+	<link rel="shortcut icon" th:href="@{/css/user/images/favicon.png}" type="image/x-icon">
+
+	<title>Movie Booking Website</title>
+
+</head>
+
+<body>
+
+	<header class="header-section" th:fragment="header">
+		<div class="container">
+			<div class="header-wrapper">
+				<div class="logo">
+					<a href="index.html"> <img th:src="@{../images/logo/logo.png}" alt="logo">
+					</a>
+				</div>
+				<ul class="menu">
+					<li><a href="#0" class="active">Home</a></li>
+
+					<!-- Cities -->
+					<li th:if="${cities != null}"><a href="#0">Cities</a>
+						<ul class="submenu">
+							<li th:each="city: ${cities}" th:if="${city.cinemas != null and city.activeFlag == true}">
+								<a href="#">
+									<div th:text="${city.cityName}"></div>
+									<ul class="submenu">
+										<li th:each="cinema : ${city.cinemas}">
+											<a th:if="${cinema.activeFlag == true}" th:href="@{/no-auth/ci-details}">
+												<div th:text="${cinema.cinemaName}"></div>
+											</a>
+										</li>
+									</ul>
+								</a>
+							</li>
+						</ul>
+					</li>
+
+					<!-- Movies -->
+					<li><a href="#0">movies</a>
+						<ul class="submenu">
+							<li><a href="movie-grid.html">Movie Grid</a></li>
+							<li><a href="movie-list.html">Movie List</a></li>
+							<li><a href="movie-details.html">Movie Details</a></li>
+							<li><a href="movie-details-2.html">Movie Details 2</a></li>
+							<li><a href="movie-ticket-plan.html">Movie Ticket Plan</a></li>
+							<li><a href="movie-seat-plan.html">Movie Seat Plan</a></li>
+							<li><a href="movie-checkout.html">Movie Checkout</a></li>
+							<li><a href="popcorn.html">Movie Food</a></li>
+						</ul>
+					</li>
+
+					<!-- BLog -->
+					<li><a href="#0">blog</a>
+						<ul class="submenu">
+							<li><a href="blog.html">Blog</a></li>
+							<li><a href="blog-details.html">Blog Single</a></li>
+						</ul>
+					</li>
+
+
+
+					<!-- Contact -->
+					<li><a th:href="@{/contact}">contact</a></li>
+
+					<!-- Admin -->
+					<li th:if="${currentUser != null}"><span> <a
+								th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'') or hasRole(''ROLE_MANAGER'') or hasRole(''ROLE_EMPLOYEE'')')}"
+								th:href="@{/ad/1/home}">Admin</a>
+						</span></li>
+
+
+					<li class="header-button pr-0"><a th:if="${currentUser != null}" th:href="@{/logout}">logout</a> <a
+							th:if="${currentUser == null}" th:href="@{/login}">login</a></li>
+
+				</ul>
+				<div class="header-bar d-lg-none">
+					<span></span> <span></span> <span></span>
+				</div>
+			</div>
+		</div>
+
+	</header>
+
+	<script th:src="@{/js/user/jquery-3.3.1.min.js}"></script>
+	<script th:src="@{/js/user/modernizr-3.6.0.min.js}"></script>
+	<script th:src="@{/js/user/plugins.js}"></script>
+	<script th:src="@{/js/user/bootstrap.min.js}"></script>
+	<script th:src="@{/js/user/isotope.pkgd.min.js}"></script>
+	<script th:src="@{/js/user/magnific-popup.min.js}"></script>
+	<script th:src="@{/js/user/owl.carousel.min.js}"></script>
+	<script th:src="@{/js/user/wow.min.js}"></script>
+	<script th:src="@{/js/user/countdown.min.js}"></script>
+	<script th:src="@{/js/user/odometer.min.js}"></script>
+	<script th:src="@{/js/user/viewport.jquery.js}"></script>
+	<script th:src="@{/js/user/nice-select.js}" }></script>
+	<script th:src="@{/js/user/main.js}"></script>
+
+</body>
