@@ -1,0 +1,41 @@
+<header class="header-section" th:fragment="menu">
+    <div class="container">
+        <div class="header-wrapper">
+            <div class="logo">
+                <a th:href="@{/home}">
+                    <img th:src="@{/user/assets/images/logo/logo.png}" alt="logo">
+                </a>
+            </div>
+            <ul class="menu">
+                <li>
+                    <a th:href="@{/}" class="active">Trang chủ</a>
+                </li>
+                <li>
+                    <a href="movie-grid.html">Tất cả phim</a>
+
+                </li>
+      
+                <li>
+                    <a href="/blog">Tin tức</a>
+                    
+                </li>
+                <li>
+                    <a href="/about">Giới thiệu</a>
+
+                </li>
+
+                <li>
+                    <a href="/contact">Liên hệ hỗ trợ</a>
+                </li>
+                <li class="header-button pr-0">
+                    <a href="sign-up.html">Đăng ký ngay</a>
+                </li>
+            </ul>
+            <div class="header-bar d-lg-none">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+</header>
