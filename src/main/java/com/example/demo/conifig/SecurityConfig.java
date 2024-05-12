@@ -29,12 +29,19 @@ public class SecurityConfig {
                 requestMatchers("/admin/**").hasAuthority("admin").
                 anyRequest().authenticated()).formLogin(login->login.loginPage("/logon").
                 loginProcessingUrl("/logon").usernameParameter("username").passwordParameter("password")
-                .defaultSuccessUrl("/admin",true));
+                .defaultSuccessUrl("/admin",true))
+                .logout(logout->logout.logoutUrl("/admin-logout").logoutSuccessUrl("/logon"))
+                .logout();
         return  http.build();
     }
     @Bean
     WebSecurityCustomizer webSecurityCustomizer()
     {
         return  (web) -> web.ignoring().requestMatchers("/admin/assets/**");
+    }
+    @Bean
+    WebSecurityCustomizer webSecurityCustomizer2()
+    {
+        return  (web) -> web.ignoring().requestMatchers("/user/assets/**");
     }
 }
