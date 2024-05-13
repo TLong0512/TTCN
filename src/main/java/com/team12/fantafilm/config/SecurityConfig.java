@@ -29,8 +29,8 @@ public class SecurityConfig {
                 anyRequest().authenticated()).formLogin(login->login.loginPage("/logon").
                 loginProcessingUrl("/logon").usernameParameter("username").passwordParameter("password")
                 .defaultSuccessUrl("/admin",true))
-                .logout(logout->logout.logoutUrl("/admin-logout").logoutSuccessUrl("/logon"))
-                .logout();
+                .logout(logout->logout.logoutUrl("/admin-logout").logoutSuccessUrl("/logon"));
+//                .logout();
         return  http.build();
     }
     @Bean

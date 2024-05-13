@@ -25,4 +25,13 @@ public class HomeController {
     {
         return "user/blog";
     }
+//    @GetMapping("signup")
+//    public String signup(){
+//        return "user/signup";
+//    }
+
+    @GetMapping("movie-grid")
+    public String moviegrid(){
+        return ("user/movie-grid");
+    }
 }
