@@ -30,8 +30,14 @@ public class HomeController {
 //        return "user/signup";
 //    }
 
-    @GetMapping("movie-grid")
+    @GetMapping("all")
     public String moviegrid(){
-        return ("user/movie-grid");
+        return ("user/all");
+    }
+
+    @GetMapping("order")
+    public  String order()
+    {
+        return "redirect:/order/";
     }
 }

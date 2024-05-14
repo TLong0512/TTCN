@@ -2,6 +2,7 @@ package com.team12.fantafilm.model;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -48,5 +49,5 @@ public class Role {
     }
 
     @OneToMany(mappedBy = "role",fetch = FetchType.EAGER)
-    private Set<UserRole> ruleUsers;
+    private Set<UserRole> ruleUsers = new HashSet<>();
 }
