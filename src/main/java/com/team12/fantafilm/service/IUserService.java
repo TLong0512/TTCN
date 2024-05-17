@@ -4,4 +4,5 @@ import com.team12.fantafilm.model.User;
 
 public interface IUserService {
      User findByUserName(String userName);
+
 }

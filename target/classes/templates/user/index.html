@@ -33,7 +33,7 @@
             <h1 class="title  cd-headline clip"><span class="d-block">Xem các bộ phim mới nhất</span> với
                 <span class="color-theme cd-words-wrapper p-0 m-0">
                         <b class="is-visible">FantaFilm</b>
-
+// phim.id phim.nm
                     </span>
             </h1>
             <!-- <p>Tham gia ngay hôm nay để nhận hàng ngàn ưu đãi!!!</p> -->
@@ -55,21 +55,21 @@
                 </div>
                 <div class="col-lg-6 mb-20">
                     <ul class="tab-menu ticket-tab-menu">
-                        <!-- <li class="active">
-                            <div class="tab-thumb">
-                                <img src="assets/images/ticket/ticket-tab01.png" alt="ticket">
-                            </div>
-                            <span>phim</span>
-                        </li> -->
                         <li class="active">
                             <div class="tab-thumb">
-                                <img src="assets/images/ticket/ticket-tab01.png" alt="ticket">
+                                <img th:src="@{/user/assets/images/ticket/ticket-tab01.png}" alt="ticket">
+                            </div>
+                            <span>phim</span>
+                        </li>
+                        <li class="active">
+                            <div class="tab-thumb">
+                                <img th:src="@{/user/assets/images/ticket/ticket-tab01.png}" alt="ticket">
                             </div>
                             <span>Phim</span>
                         </li>
                         <li>
                             <div class="tab-thumb">
-                                <img src="assets/images/ticket/ticket-tab03.png" alt="ticket">
+                                <img th:src="@{/user/assets/images/ticket/ticket-tab03.png}" alt="ticket">
                             </div>
                             <span>Tin tức</span>
                         </li>

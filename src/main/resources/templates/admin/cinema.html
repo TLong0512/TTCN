@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head th:replace="/admin/common/head :: head"></head>
+<body>
+<script th:inline="javascript">
+    function openModifyModal(id,name,code,address,capacity,description) {
+        var modal = $('#modifyModal');
+
+        modal.find('#cinemaId').val(id);
+        modal.find('#cinemaName').val(name);
+        modal.find('#cinemaCode').val(code);
+        modal.find('#cinemaAddress').val(address);
+        modal.find('#cinemaCapacity').val(capacity);
+        modal.find('#cinemaDescription').val(description);
+        modal.modal('show');
+
+    }
+    function closeModifyModal() {
+        var modal = $('#modifyModal');
+        modal.modal('hide');
+    }
+</script>
+<!--  Body Wrapper -->
+<div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+     data-sidebar-position="fixed" data-header-position="fixed">
+    <!-- Sidebar Start -->
+    <head th:replace="/admin/common/sidebar :: sidebar"></head>
+    <!--  Sidebar End -->
+    <!--  Main wrapper -->
+    <div class="body-wrapper">
+        <!--  Header Start -->
+        <head th:replace="/admin/common/menu :: menu"></head>
+        <!--  Header End -->
+
+        <div class="container-fluid"><div class="row">
+        <div class="col-lg d-flex align-items-stretch">
+            <div class="card w-100">
+                <div class="card-body p-4">
+                    <h5 class="card-title fw-semibold mb-4">Cinema detail</h5>
+                    <div class="table-responsive">
+                        <table class="table text-nowrap mb-0 align-middle">
+                            <thead class="text-dark fs-4">
+                            <tr>
+                                <th class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0">Id</h6>
+                                </th>
+                                <th class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0">Name</h6>
+                                </th>
+                                <th class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0">Code</h6>
+                                </th>
+                                <th class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0">Adress</h6>
+                                </th>
+                                <th class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0">Capacity</h6>
+                                </th>
+                                <th class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0">Description</h6>
+                                </th>
+
+                                <th class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0">
+                                        <button class="btn btn-success btn-info btn-lg" style="border: 0px; color: white; font-size: small"
+                                                data-toggle="modal" data-target="#addModal">Add new Cinema</button></h6>
+                                </th>
+                                <th class="border-bottom-0">
+
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="item : ${cinemas}">
+
+                                <td class="border-bottom-0" th:text="${item.id}"></td>
+                                <td class="border-bottom-0" th:text="${item.name}"></td>
+                                <td class="border-bottom-0" th:text="${item.code}"></td>
+                                <td class="border-bottom-0" th:text="${item.address}"></td>
+                                <td class="border-bottom-0" th:text="${item.capacity}"></td>
+                                <td class="border-bottom-0" th:text="${item.description}"></td>
+                                <td class="border-bottom-0" >
+                                    <button class="btn btn-success btn-info btn-lg"
+                                            style="background-color: #0a53be; border: 0px; color: white; font-size: small"
+                                            th:attr="data-id=${item.id},data-name=${item.name},
+                                            data-code=${item.code},data-add=${item.address},data-cap=${item.capacity},data-des=${item.description}"
+                                            onclick="openModifyModal(this.getAttribute('data-id'),this.getAttribute('data-name')
+                                            , this.getAttribute('data-code'),this.getAttribute('data-add'),this.getAttribute('data-cap'),
+                                            this.getAttribute('data-des'))">
+                                        Edit
+                                    </button>
+
+                                        <a onclick="return confirm('Delete this?')" th:href="@{/admin/cinema/delete-cinema/{id}(id= ${item.id})}" class="btn btn-success btn-info btn-lg" style="background-color: red;border: 0px; color: white; font-size: small"
+                                        >Delete</a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <form th:method="Post" th:action="@{/admin/cinema/add-cinema}" th:object="${cinema}" method="post">
+        <div class="modal fade" id="addModal" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" onclick="closeModifyModal()">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label  class="form-label" >Cinema Name</label>
+                            <input type="text" class="form-control" aria-describedby="emailHelp" th:field="*{name}">
+                            <div  class="form-text">We'll never share your email with anyone else.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label  class="form-label">Address</label>
+                            <input  type="text" class="form-control" th:field="*{address}">
+                        </div>
+                        <div class="mb-3">
+                            <label  class="form-label">Number of rooms</label>
+                            <input type="number"  min="0" class="form-control" th:field="*{capacity}">
+                        </div>
+                        <div class="mb-3">
+                            <label  class="form-label">Description</label>
+                            <input  type="text" class="form-control" th:field="*{description}">
+                        </div>
+                        <button type="submit" class="btn btn-primary" value="Submit">Submit</button>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="closeModifyModal()">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+<form th:method="Post" th:action="@{/admin/cinema/edit-cinema}" th:object="${cinema}" method="post">
+    <div class="modal fade" id="modifyModal" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" onclick="closeModifyModal()">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <input id="cinemaId" type="hidden" class="form-control" th:field="*{id}">
+                    </div>
+                    <div class="mb-3">
+                        <input id="cinemaCode" type="hidden" class="form-control" th:field="*{code}">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" >Cinema Name</label>
+                        <input id="cinemaName"  type="text" class="form-control" aria-describedby="emailHelp" th:field="*{name}">
+
+                    </div>
+                    <div class="mb-3">
+                        <label  class="form-label">Address</label>
+                        <input id="cinemaAddress" type="text" class="form-control" th:field="*{address}">
+                    </div>
+                    <div class="mb-3">
+                        <label  class="form-label">Number of rooms</label>
+                        <input id="cinemaCapacity" type="number" min="0" class="form-control" th:field="*{capacity}">
+                    </div>
+                    <div class="mb-3">
+                        <label  class="form-label">Description</label>
+                        <input id="cinemaDescription" type="text" class="form-control" th:field="*{description}">
+                    </div>
+                    <button type="submit" class="btn btn-primary" value="Modify">Edit</button>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="closeModifyModal()">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+    </div>
+</div>
+<head th:replace="/admin/common/js :: script"></head>
+</body>
+
+</html>

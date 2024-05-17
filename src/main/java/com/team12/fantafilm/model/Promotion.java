@@ -1,21 +1,55 @@
 package com.team12.fantafilm.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
-import java.sql.Date;
 import java.time.LocalDateTime;
 
+
 @Entity
-@Table
+@Getter
+@Setter
+@ToString
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "promotion")
 public class Promotion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
     private Long id;
-    @Column(nullable = false)
-    private  String code;
-    @Column(nullable = false)
-    private  String name;
-    @Column(nullable = false)
-    private LocalDateTime start;
 
+    @Column(name = "code")
+    private String code;
+
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "percent")
+    private Integer percent;
+
+    @ManyToOne
+    @JoinColumn(name = "rankCustomer_id")
+    private RankCustomer rankCustomer;
+
+    @Column(name = "start_date")
+    private LocalDateTime startDate;
+
+    @Column(name = "end_date")
+    private LocalDateTime endDate;
+
+    @Column(name = "quantity")
+    private Integer quantity;
+
+    @Column(name = "description", length = 560)
+    private String description;
 }
+
+
+

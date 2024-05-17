@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head th:replace="/admin/common/head :: head"></head>
+<body>
+<script th:inline="javascript">
+    function openModifyModal(id) {
+        // Lấy modal
+        var modal = $('#modifyModal');
+
+        // Gán giá trị ID vào input tương ứng trong modal
+        modal.find('#ratedId').val(id);
+
+        // Mở modal
+        modal.modal('show');
+    }
+</script>
+<!--  Body Wrapper -->
+<div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+     data-sidebar-position="fixed" data-header-position="fixed">
+    <!-- Sidebar Start -->
+    <head th:replace="/admin/common/sidebar :: sidebar"></head>
+    <!--  Sidebar End -->
+    <!--  Main wrapper -->
+    <div class="body-wrapper">
+        <!--  Header Start -->
+        <head th:replace="/admin/common/menu :: menu"></head>
+        <!--  Header End -->
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg d-flex align-items-stretch">
+                    <div class="card w-100">
+                        <div class="card-body p-4">
+                            <h5 class="card-title fw-semibold mb-4">Rated detail</h5>
+                            <div class="table-responsive">
+                                <table class="table text-nowrap mb-0 align-middle">
+                                    <thead class="text-dark fs-4">
+                                    <tr>
+                                        <th class="border-bottom-0">
+                                            <h6 class="fw-semibold mb-0">Id</h6>
+                                        </th>
+                                        <th class="border-bottom-0">
+                                            <h6 class="fw-semibold mb-0">Code</h6>
+                                        </th>
+                                        <th class="border-bottom-0">
+                                            <h6 class="fw-semibold mb-0">Description</h6>
+                                        </th>
+
+                                        <th class="border-bottom-0">
+                                            <h6 class="fw-semibold mb-0">
+                                                <button class="btn btn-success btn-info btn-lg"
+                                                        style="border: 0px; color: white; font-size: small"
+                                                        data-toggle="modal" data-target="#addModal">Add new Rated
+                                                </button>
+                                            </h6>
+                                        </th>
+                                        <th class="border-bottom-0">
+
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="item : ${rateds}">
+                                        <td class="border-bottom-0" th:text="${item.id}"></td>
+                                        <td class="border-bottom-0" th:text="${item.code}"></td>
+
+                                        <td class="border-bottom-0" th:text="${item.description}"></td>
+                                        <td class="border-bottom-0">
+                                            <button class="btn btn-success btn-info btn-lg"
+                                                    style="background-color: #0a53be; border: 0px; color: white; font-size: small"
+                                                    th:onclick="'openModifyModal(\'' + ${item.id} + '\')'">
+                                                Edit
+                                            </button>
+
+                                            <a onclick="return confirm('Delete this?')"
+                                               th:href="@{/admin/rated/delete-rated/{id}(id= ${item.id})}"
+                                               class="btn btn-success btn-info btn-lg"
+                                               style="background-color: red;border: 0px; color: white; font-size: small"
+                                            >Delete</a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <form th:method="Post" th:action="@{/admin/rated/add-rated}" th:object="${rated}" method="post">
+            <div class="modal fade" id="addModal" role="dialog">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label class="form-label">Rated Code</label>
+                                <input type="text" class="form-control" aria-describedby="emailHelp" th:field="*{code}">
+                                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Description</label>
+                                <input type="text" class="form-control" th:field="*{description}">
+                            </div>
+                            <button type="submit" class="btn btn-primary" value="Submit">Submit</button>
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <form th:method="Post" th:action="@{/admin/rated/edit-rated}" th:object="${rated}" method="post">
+            <div class="modal fade" id="modifyModal" role="dialog">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label class="form-label">Rated ID</label>
+                                <input id="ratedId" type="text" class="form-control" th:field="*{id}" readonly>
+
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Rated Name</label>
+                                <input type="text" class="form-control" aria-describedby="emailHelp" th:field="*{code}">
+
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Description</label>
+                                <input type="text" class="form-control" th:field="*{description}">
+                            </div>
+                            <button type="submit" class="btn btn-primary" value="Modify">Edit</button>
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<head th:replace="/admin/common/js :: script"></head>
+</body>
+
+</html>
