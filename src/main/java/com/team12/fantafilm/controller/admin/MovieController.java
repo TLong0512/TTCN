@@ -39,9 +39,9 @@ public class MovieController {
     private  MovieTypeService movieTypeService;
     @Autowired
     private  PerformerService performerService;
-
     @GetMapping("/view-all/page/{pageNumber}")
-    public String findAll(Model model, @PathVariable("pageNumber") Integer pageNumber,
+    public String findAll(Model model,
+                          @PathVariable("pageNumber") Integer pageNumber,
                           @RequestParam(value = "keyword", required = false) String keyword,
                           @RequestParam(value = "status", required = false) String status,
                           @RequestParam(value = "director", required = false) String directors,
@@ -67,6 +67,6 @@ public class MovieController {
         model.addAttribute("totalPages", page.getTotalPages());
         model.addAttribute("totalItems", page.getTotalElements());
         model.addAttribute("listMovie", page.getContent());
-        return "redirect:/admin/movie/view-all";
+        return "admin/movie";
     }
 }

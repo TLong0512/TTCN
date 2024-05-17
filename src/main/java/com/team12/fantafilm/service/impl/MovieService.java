@@ -138,8 +138,6 @@ public class MovieService implements IMovieService {
             DataFormatter fmt = new DataFormatter();
             Iterator<Row> iterator = datatypeSheet.iterator();
             Row firstRow = iterator.next();
-//            Cell firstCell = firstRow.getCell(1);
-//            System.out.println(firstCell.getStringCellValue());
             List<Movie> listMovie = new ArrayList<Movie>();
             while (iterator.hasNext()) {
                 Row currentRow = iterator.next();
