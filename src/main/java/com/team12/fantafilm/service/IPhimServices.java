@@ -4,7 +4,7 @@ import com.team12.fantafilm.model.Phim;
 
 import java.util.List;
 
-public interface PhimServices {
+public interface IPhimServices {
     List<Phim> getAll();
     Boolean create(Phim phim);
     Phim findById(Long id);
