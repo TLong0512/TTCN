@@ -18,7 +18,17 @@
             <head th:replace="/admin/common/menu :: menu"></head>
             <!--  Header End -->
             <div class="container-fluid">
-                <!--  Row 1 -->
+
+                    <div class="card-body">
+                        <div class="card">
+                            <div class="card-body p-4">
+                                <button type="button" class="btn btn-success m-1">Add new Movie</button>
+                                <button type="button" class="btn btn-warning m-1">Search</button>
+                            </div>
+                        </div>
+                    </div>
+
+                <!--  Row-->
                 <div class="row">
                     <div class="col-sm-6 col-xl-3" th:each="movie : ${listMovie}">
                         <div class="card overflow-hidden rounded-2">
@@ -26,7 +36,7 @@
                             <div class="position-relative">
                                 <a href="javascript:void(0)">
                                     <img th:src="@{'/admin/assets/images/products/'+${movie.image}}"
-                                        class="card-img-top rounded-0" alt="..." height="300px"></a>
+                                        class="card-img-top rounded-0" alt="..." height="400px"></a>
 
                                 <a href="javascript:void(0)"
                                     class="bg-primary rounded-circle p-2 text-white d-inline-flex position-absolute bottom-0 end-0 mb-n3 me-3"

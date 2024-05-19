@@ -67,6 +67,7 @@ public class MovieController {
         model.addAttribute("totalPages", page.getTotalPages());
         model.addAttribute("totalItems", page.getTotalElements());
         model.addAttribute("listMovie", page.getContent());
+
         return "admin/movie";
     }
 }

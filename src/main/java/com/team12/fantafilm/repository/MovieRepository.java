@@ -1,5 +1,6 @@
 package com.team12.fantafilm.repository;
 import com.team12.fantafilm.model.Movie;
+import jakarta.persistence.OrderBy;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,14 +12,16 @@ import java.util.List;
 
 
 public interface MovieRepository extends JpaRepository<Movie, Long> {
+    @Query("FROM Movie m order by m.premiereDate desc ")
+    List<Movie> showAll();
 
-    @Query("FROM Movie m where m.status like 'Đang chiếu'")
+    @Query("FROM Movie m where m.status like 'On air'")
     List<Movie> showPhimDangChieu();
 
-    @Query(" from Movie m where m.status like 'Sắp chiếu' ")
+    @Query(" from Movie m where m.status like 'Incoming' ")
     List<Movie> showPhimSapChieu();
 
-    @Query(" from Movie m where m.status in ('Sắp chiếu', 'Đang chiếu')")
+    @Query(" from Movie m where m.status in ('On air', 'Incoming')")
     List<Movie> showPhimSapChieuAndDangChieu();
 
     String movie = ("SELECT DISTINCT  m.*\n" +
@@ -38,7 +41,8 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
     //
     @Query(" SELECT DISTINCT m" +
             " FROM Movie m " +
-            "LEFT JOIN m.directors d " +
+
+            " LEFT JOIN m.directors d " +
             "LEFT JOIN m.languages lang " +
             "LEFT JOIN m.movieTypes type " +
             "LEFT JOIN m.performers performer " +
@@ -53,7 +57,9 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
             "        OR d.name LIKE %:keyword% " +
             "        OR lang.name LIKE %:keyword% " +
             "        OR type.name LIKE %:keyword% " +
-            "        OR performer.name LIKE %:keyword% )")
+            "        OR performer.name LIKE %:keyword% )"
+            +"ORDER BY m.premiereDate desc"
+            )
     Page<Movie> filterMovies(Pageable pageable,
                              @Param("directors") String directors,
                              @Param("languages") String languages,

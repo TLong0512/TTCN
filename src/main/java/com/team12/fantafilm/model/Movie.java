@@ -79,6 +79,7 @@ public class Movie {
     private List<Language> languages = new ArrayList<>();
 
     @Column(name = "image")
+    @Lob
     private String image;
 
     @ManyToMany
@@ -90,5 +91,4 @@ public class Movie {
 
     @Column(name = "description", length = 1000)
     private String description;
-
 }

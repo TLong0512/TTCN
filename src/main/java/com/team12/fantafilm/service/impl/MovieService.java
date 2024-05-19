@@ -36,7 +36,8 @@ public class MovieService implements IMovieService {
 
     @Override
     public List<Movie> findAll() {
-        return repository.findAll();
+
+        return repository.showAll();
     }
 
     @Override
@@ -175,7 +176,9 @@ public class MovieService implements IMovieService {
     }
     @Override
     public List<Movie> getMovie(String cinemaId, String movieId) {
-        return repository.getMovie(cinemaId,movieId);
+
+
+        return  repository.getMovie(cinemaId,movieId);
     }
 
     @Override
@@ -198,6 +201,4 @@ public class MovieService implements IMovieService {
     public Page<Movie> filterMovies(Integer pageNumber, String directors, String languages, String movieTypes,  String performers, String status, String keyword) {
         return repository.filterMovies(pageMovie(pageNumber), directors, languages, movieTypes,  performers, status, keyword);
     }
-
-
 }
