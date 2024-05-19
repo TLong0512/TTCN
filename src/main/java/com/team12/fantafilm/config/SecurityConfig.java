@@ -1,5 +1,6 @@
 package com.team12.fantafilm.config;
 
+//import com.team12.fantafilm.service.impl.security.CustomUserDetailService;
 import com.team12.fantafilm.service.impl.security.CustomUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -25,7 +26,7 @@ public class SecurityConfig {
     {
         http.csrf(csrf->csrf.disable()).authorizeHttpRequests((auth)
                 ->auth.requestMatchers("/*").permitAll().
-                requestMatchers("/admin/**").hasAuthority("admin").
+                requestMatchers("/admin/**").permitAll().
                 anyRequest().authenticated()).formLogin(login->login.loginPage("/logon").
                 loginProcessingUrl("/logon").usernameParameter("username").passwordParameter("password")
                 .defaultSuccessUrl("/admin",true))
