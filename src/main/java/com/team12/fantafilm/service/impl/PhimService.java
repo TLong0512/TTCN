@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PhimService implements IPhimServices {
@@ -17,6 +18,11 @@ public class PhimService implements IPhimServices {
         return this.phimRepository.findAll();
     }
 
+
+    @Override
+    public List<Phim> findByName(String name) {
+        return this.phimRepository.findByName(name);
+    }
     @Override
     public Boolean create(Phim phim) {
         try{
@@ -31,8 +37,12 @@ public class PhimService implements IPhimServices {
 
     @Override
     public Phim findById(Long id) {
-        return null;
+        return this.phimRepository.findById(id).get();
+//        Optional<Phim> phimOptional = this.phimRepository.findById(id);
+//        return phimOptional.get();
     }
+
+
 
     @Override
     public Boolean update(Phim phim) {
