@@ -2,7 +2,9 @@ package com.team12.fantafilm.service.impl;
 
 
 import com.team12.fantafilm.model.Director;
+import com.team12.fantafilm.model.Movie;
 import com.team12.fantafilm.repository.DirectorRepository;
+import com.team12.fantafilm.repository.MovieRepository;
 import com.team12.fantafilm.service.IDirectorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,10 @@ import java.util.Random;
 public class DirectorService implements IDirectorService {
     @Autowired
     DirectorRepository directorRepository;
+
+
+    @Autowired
+    private MovieRepository movieRepository;
     @Override
     public List<Director> findAll() {
         return directorRepository.findAll();
@@ -65,5 +71,22 @@ public class DirectorService implements IDirectorService {
         {
             return  false;
         }
+    }
+
+    @Override
+    public List<Director> searchNameDirector(String keycode) {
+        return directorRepository.findByNameContains(keycode);
+    }
+
+    @Override
+    public List<Director> findDireactorByMovieId(Long movieId) {
+        Movie movie = movieRepository.findById(movieId).get();
+        List<Director> directors = movie.getDirectors();
+        return directors;
+    }
+
+    @Override
+    public Director findByNameLike(String name) {
+        return directorRepository.findByNameLike(name);
     }
 }

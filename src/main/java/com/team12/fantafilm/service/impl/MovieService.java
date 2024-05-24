@@ -59,19 +59,36 @@ public class MovieService implements IMovieService {
     public Movie save(Movie movie) {
         Random generator = new Random();
         int value = generator.nextInt((100000 - 1) + 1) + 1;
-        movie.setCode("mv" + value);
-        System.out.println(movie.getEndDate());
+        movie.setCode("MV" + value);
         java.util.Date date = new java.util.Date();
         if (date.after(movie.getEndDate())) {
-            movie.setStatus("Đã chiếu");
+            movie.setStatus("Showed");
         } else if (date.before(movie.getPremiereDate())) {
-            movie.setStatus("Sắp chiếu");
+            movie.setStatus("In coming");
         } else {
-            movie.setStatus("Đang chiếu");
+            movie.setStatus("On air");
         }
         return repository.save(movie);
     }
-
+    @Override
+    public  void checkStatusToday()
+    {
+        Date date = new Date();
+        List<Movie> movies = repository.findAll();
+        for(int i = 0; i<movies.size(); ++i)
+        {
+            if(movies.get(i).getStatus().equals("On air") && date.after(movies.get(i).getEndDate()))
+            {
+                movies.get(i).setStatus("Showed");
+                repository.save(movies.get(i));
+            }
+            if(movies.get(i).getStatus().equals("In coming") && date.after(movies.get(i).getPremiereDate()))
+            {
+                movies.get(i).setStatus("On air");
+                repository.save(movies.get(i));
+            }
+        }
+    }
 
     //tự động check ngày để đổi trạng thái phim
 //    @Scheduled(fixedRate = 86400000)

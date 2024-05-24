@@ -10,4 +10,10 @@ public interface IMovieTypeService {
     Boolean addMovieType(MovieType movieType);
     Boolean update(MovieType movieType);
     Boolean delete(Long id);
+
+    List<MovieType> searchNameMovieType(String keycode);
+
+    List<MovieType> findMovieTyprbyMovieId(Long movieId);
+
+    MovieType findByNameLike(String name);
 }

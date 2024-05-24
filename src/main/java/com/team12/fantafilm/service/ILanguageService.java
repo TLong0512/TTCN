@@ -11,4 +11,9 @@ public interface ILanguageService {
     Boolean addLanguage(Language language);
     Boolean update(Language language);
     Boolean delete(Long id);
+    List<Language> searchNameLanguage(String keycode);
+
+    List<Language> findNameByMovieId(Long id);
+
+    Language findByNameLike(String name);
 }

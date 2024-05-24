@@ -2,7 +2,9 @@ package com.team12.fantafilm.service.impl;
 
 
 import com.team12.fantafilm.model.Language;
+import com.team12.fantafilm.model.Movie;
 import com.team12.fantafilm.repository.LanguageRepository;
+import com.team12.fantafilm.repository.MovieRepository;
 import com.team12.fantafilm.service.ILanguageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,8 @@ import java.util.Random;
 public class LanguageService implements ILanguageService {
     @Autowired
     LanguageRepository languageRepository;
+    @Autowired
+    MovieRepository movieRepository;
     @Override
     public List<Language> findAll() {
         return languageRepository.findAll();
@@ -66,4 +70,22 @@ public class LanguageService implements ILanguageService {
             return  false;
         }
     }
+
+    @Override
+    public List<Language> searchNameLanguage(String keycode) {
+        return languageRepository.findByNameContains(keycode);
+    }
+
+    @Override
+    public List<Language> findNameByMovieId(Long id) {
+        Movie movie = movieRepository.findById(id).get();
+        List<Language> listLanguage = movie.getLanguages();
+        return listLanguage;
+    }
+
+    @Override
+    public Language findByNameLike(String name) {
+        return languageRepository.findByNameLike(name);
+    }
+
 }

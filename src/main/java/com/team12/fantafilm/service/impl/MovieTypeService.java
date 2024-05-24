@@ -1,7 +1,9 @@
 package com.team12.fantafilm.service.impl;
 
 
+import com.team12.fantafilm.model.Movie;
 import com.team12.fantafilm.model.MovieType;
+import com.team12.fantafilm.repository.MovieRepository;
 import com.team12.fantafilm.repository.MovieTypeRepository;
 import com.team12.fantafilm.service.IMovieTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,15 +15,17 @@ import java.util.Random;
 @Service
 public class MovieTypeService implements IMovieTypeService {
     @Autowired
-    MovieTypeRepository MovieTypeRepository;
+    MovieTypeRepository movieTypeRepository;
+    @Autowired
+    private MovieRepository movieRepository;
     @Override
     public List<MovieType> findAll() {
-        return MovieTypeRepository.findAll();
+        return movieTypeRepository.findAll();
     }
 
     @Override
     public MovieType findById(Long id) {
-        return MovieTypeRepository.findById(id).get();
+        return movieTypeRepository.findById(id).get();
     }
 
     @Override
@@ -33,7 +37,7 @@ public class MovieTypeService implements IMovieTypeService {
                 int val = generate.nextInt((10000-1)+1)+1;
                 MovieType.setCode("TYPE"+val);
             }
-            MovieTypeRepository.save(MovieType);
+            movieTypeRepository.save(MovieType);
             return  true;
         }
         catch (Exception e)
@@ -45,7 +49,7 @@ public class MovieTypeService implements IMovieTypeService {
     @Override
     public Boolean update(MovieType MovieType) {
         try {
-            MovieTypeRepository.save(MovieType);
+            movieTypeRepository.save(MovieType);
             return  true;
         }
         catch (Exception e)
@@ -57,7 +61,7 @@ public class MovieTypeService implements IMovieTypeService {
     @Override
     public Boolean delete(Long id) {
         try {
-            MovieTypeRepository.deleteById(id);
+            movieTypeRepository.deleteById(id);
             return  true;
         }
         catch (Exception e)
@@ -65,4 +69,22 @@ public class MovieTypeService implements IMovieTypeService {
             return  false;
         }
     }
+
+    @Override
+    public List<MovieType> searchNameMovieType(String keycode) {
+        return movieTypeRepository.findByNameContains(keycode);
+    }
+
+    @Override
+    public List<MovieType> findMovieTyprbyMovieId(Long movieId) {
+        Movie movie = movieRepository.findById(movieId).get();
+        List<MovieType> movieTypes = movie.getMovieTypes();
+        return movieTypes;
+    }
+
+    @Override
+    public MovieType findByNameLike(String name) {
+        return movieTypeRepository.findByNameLike(name);
+    }
+
 }

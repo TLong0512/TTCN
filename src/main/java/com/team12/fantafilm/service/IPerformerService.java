@@ -11,4 +11,11 @@ public interface IPerformerService {
     Boolean addPerformer(Performer performer);
     Boolean update(Performer performer);
     Boolean delete(Long id);
+
+
+    List<Performer> searchNamePerformer(String keycode);
+
+    List<Performer> findPerformerByMovieId(Long id);
+
+    Performer findByNameLike(String name);
 }

@@ -88,7 +88,7 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
             "        OR lang.name LIKE %:keyword% " +
             "        OR type.name LIKE %:keyword% " +
             "        OR performer.name LIKE %:keyword% )" +
-            "AND m.status like 'Đang chiếu'")
+            "AND m.status like 'On Air'")
     List<Movie> filterMoviesTrangChu(
             @Param("directors") String directors,
             @Param("languages") String languages,

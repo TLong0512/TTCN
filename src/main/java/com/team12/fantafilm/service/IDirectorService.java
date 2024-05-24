@@ -11,4 +11,9 @@ public interface IDirectorService {
     Boolean addDirector(Director director);
     Boolean update(Director director);
     Boolean delete(Long id);
+    List<Director> searchNameDirector(String keycode);
+
+    List<Director> findDireactorByMovieId(Long movieId);
+
+    Director findByNameLike(String name);
 }

@@ -34,6 +34,6 @@ public interface IMovieService {
     Pageable pageMovie(Integer pageNumber);
 
     Movie findByName(String name);
-
+    void checkStatusToday();
     Page<Movie> filterMovies(Integer pageNumber, String directors, String languages, String movieTypes,  String performers, String status, String keyword);
 }
