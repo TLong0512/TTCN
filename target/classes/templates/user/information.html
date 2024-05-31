@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/user/common/head :: head">
+    <title>Infomation</title>
+</head>
+
+<body>
+
+<header th:replace="/user/common/menu :: menu"></header>
+
+<!-- Content-->
+<div class="container">
+    <div id="alert" class="alert alert-warning hidden">
+        <strong>Warning!</strong> Unable to update personal information.
+    </div>
+
+    <h3>Avatar</h3>
+
+    <div class="avatar-container">
+        <div>
+            <img src="/admin/assets/images/profile/" th:src="@{'http://localhost:1010/admin/assets/images/profile/' + ${user.image}}" alt="Avatar" class="avatar">
+        </div>
+        <div class="btn-update-avatar">
+            <button type="button" class="btn btn-primary disabled">Update</button>
+        </div>
+    </div>
+
+    <div class="details-container">
+        <h3>Account information</h3>
+
+        <div class="row">
+            <div class="col-sm-3">
+                <ul>
+                    <li><b>User name:</b></li>
+                    <li><b>Full name:</b></li>
+                    <li><b>Email:</b></li>
+                    <li><b>Phone number:</b></li>
+                </ul>
+            </div>
+            <div class="col-sm-5">
+                <ul>
+                    <li> <span th:text = "${user.userName}"></span></li>
+                    <li> <span th:text = "${user.fullName}"></span></li>
+                    <li> <span th:text = "${user.email}"></span></li>
+                    <li> <span th:text = "${user.phoneNumber}"></span></li>
+                </ul>
+            </div>
+        </div>
+        <button type="button" class="btn btn-primary" id="edit-information">Update</button>
+    </div>
+
+    <div class="update-information hidden">
+        <h3>Update account</h3>
+        <form method="post" action="/information">
+            <div class="row">
+                <div class="col-sm-3">
+                    <ul>
+                        <li><label>User name:</label></li>
+                        <li><label>Full name:</label></li>
+                        <li><label>Email:</label></li>
+                        <li><label>Phone number:</label></li>
+                    </ul>
+                </div>
+                <div class="col-sm-4">
+                    <ul>
+                        <li><input type="text" value="${user.userName}" name="userName" readonly></li>
+                        <li><input type="text" value="${user.fullName}" name="fullName" required></li>
+                        <li><input type="email" value="${user.email}" name="email" required></li>
+                        <li><input type="number" value="${user.phoneNumber}" name="phone" required></li>
+                    </ul>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary" id="update-information">Update</button>
+        </form>
+    </div>
+</div>
+
+<div class="clearfix"></div>
+
+<script>
+    $(function () {
+        $('#edit-information').click(function () {
+            $('.details-container').addClass('hidden');
+            $('.update-information').removeClass('hidden');
+        })
+    });
+
+    const isError = '${error}';
+
+    if (isError !== '') {
+        $('#alert').removeClass('hidden');
+    }
+</script>
+
+<!-- ==========Newslater-Section========== -->
+<footer th:replace="/user/common/footer :: footer"></footer>
+<!-- ==========Newslater-Section========== -->
+<head th:replace="/user/common/js :: script"></head>
+
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/user/common/head :: head">
+    <title>Detail movie</title>
+</head>
+
+<body>
+
+<header th:replace="/user/common/menu :: menu"></header>
+
+<div class="container">
+    <!-- Movie Details -->
+    <div class="movie-details">
+        <div class="movie-image">
+            <img src="/admin/assets/images/products/" th:src="@{'http://localhost:1010/admin/assets/images/products/' + ${movie.image}}" alt="Movie Image">
+        </div>
+        <div class="movie-info">
+            <h2 th:text="${movie.name}"></h2>
+            <p th:text="${movie.description}"></p>
+            <div class="details">
+                <div><b>Director:</b>
+                    <span th:each="director : ${movie.directors}" th:text="${director.name}"></span>
+                </div>
+                <div><b>Actor:</b>
+                    <span th:each="performer : ${movie.performers}" th:text="${performer.name}"></span>
+                </div>
+                <div><b>Movie type:</b>
+                    <span th:each="type : ${movie.movieTypes}" th:text="${type.name}"></span>
+                </div>
+                <div><b>Movie duration (minutes):</b>
+                    <span th:text="${movie.movieDuration}"></span>
+                </div>
+                <div><b>Language:</b>
+                    <span th:each="language : ${movie.languages}" th:text="${language.name}"></span>
+                </div>
+                <div><b>Premiere date:</b>
+                    <span th:text="${movie.premiereDate}"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Trailer -->
+    <div class="trailer">
+        <h2>Trailer</h2>
+        <div class="video">
+            <iframe class="responsive-iframe"
+                    th:src="@{${#strings.replace(movie.trailer, 'watch?v=', 'embed/')}}"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen></iframe>
+        </div>
+    </div>
+</div>
+
+<!-- ==========Newslater-Section========== -->
+<footer th:replace="/user/common/footer :: footer"></footer>
+<!-- ==========Newslater-Section========== -->
+<head th:replace="/user/common/js :: script"></head>
+
+</body>
+</html>
