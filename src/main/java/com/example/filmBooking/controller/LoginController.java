@@ -77,7 +77,7 @@ public class LoginController {
         Customer customer = customerService.findByEmail(email);
         HttpSession sessionLogin = request.getSession();
 
-        if (customer == null || !customer.getPassword().equals(password)) {
+        if (customer == null || !customer.getPassword().equals(password) || !customer.getRole().equals("user")) {
             sessionLogin.setAttribute("ERR_LOGIN", "Sai tên tài khoản hoặc mật khẩu");
             return "redirect:/fantafilm/login";
         } else {

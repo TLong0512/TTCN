@@ -123,7 +123,7 @@ dayElements.forEach(day => {
         const h1Element = document.getElementById('selectedDate');
         h1Element.textContent = ' Ngày: ' + formatCustomDateH1(a);
         var date1 = '';
-        fetch('http://localhost:8080/schedule/search-by-date?date1=' + a + '&room=' + selectedRoom.value)
+        fetch('http://localhost:1111/schedule/search-by-date?date1=' + a + '&room=' + selectedRoom.value)
             .then(response => {
                 console.log(response)
                 if (!response.ok) {
@@ -172,7 +172,7 @@ dayElements.forEach(day => {
 console.log(itemMap)
 
 function sendItemMapToServer() {
-    const url = 'http://localhost:8080/schedule/update-all';
+    const url = 'http://localhost:1111/schedule/update-all';
     const bodyData = Object.values(itemMap);
 
     fetch(url, {
