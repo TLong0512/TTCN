@@ -7,7 +7,7 @@ import java.io.File;
 @Component
 public class UploadImage {
     public File handerUpLoadFile(MultipartFile uploadFile) {
-        String folderPath = "E:\\projectGraduate\\src\\main\\resources\\static\\admin\\assets\\img";
+        String folderPath = "D:\\WORK_SPACE\\Java_Projects\\BTL_TTCN\\src\\main\\resources\\static\\admin\\assets\\img";
         File myUpLoadFolder = new File(folderPath);
         // thiếu thì tạo
         if (!myUpLoadFolder.exists()) {
