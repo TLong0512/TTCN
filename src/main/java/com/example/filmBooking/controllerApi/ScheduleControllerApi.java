@@ -96,8 +96,6 @@ public class ScheduleControllerApi {
         List<Object> listTime = Arrays.asList(listStartTimesEntity.getBody());
         model.addAttribute("listTime", listTime);
 
-
-
         String urlTemplate1 = UriComponentsBuilder.fromHttpUrl(apiGetCinema)
                 .queryParam("movieId", "{movieId}")
                 .queryParam("cinemaId", "{cinemaId}")

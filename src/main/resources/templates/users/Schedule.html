@@ -97,7 +97,7 @@
                                 </div>
                             </div>
                             <div class="movie-schedule" onclick="displayData(this)">
-                                <div class="item" th:each="start_at : ${listTime}" >
+                                <div class="item" th:each="start_at : ${listTime}">
                                     <span id="time">[[${start_at[0]}]]</span>
                                     <span id="room" style="display: none;">[[${start_at[1]}]]</span>
                                 </div>
