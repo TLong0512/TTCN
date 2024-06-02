@@ -34,8 +34,9 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public Boolean checkAdminLogin(String email, String password) {
         Optional<Customer> customer = Optional.ofNullable(repository.findByEmail(email));
-        if(customer.isPresent() && customer.get().getPassword().equals(password))
-        {return true;
+        if(customer.isPresent() && customer.get().getPassword().equals(password) && customer.get().getRole().equals("admin"))
+        {
+            return true;
 
         }
         return false;
@@ -44,6 +45,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Customer save(Customer customer) {
+        customer.setRole("user");
         Random generator = new Random();
         int value = generator.nextInt((100000 - 1) + 1) + 1;
         customer.setCode("code_" + value);

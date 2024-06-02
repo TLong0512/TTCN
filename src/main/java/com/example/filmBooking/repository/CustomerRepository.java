@@ -54,7 +54,7 @@ public interface CustomerRepository extends JpaRepository<Customer, String> {
 
     Customer findByEmail(String email);
 
-    @Query(" select sum (b.point) from Bill b where b.customer.id =:customerId and b.status=1")
-    Integer pointSetRank(String customerId);
+    @Query("SELECT SUM(b.point) FROM Bill b WHERE b.customer.id = :customerId AND b.status = 1")
+    Integer pointSetRank(@Param("customerId") String customerId);
 
 }

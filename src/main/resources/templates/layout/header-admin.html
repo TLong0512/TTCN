@@ -40,7 +40,7 @@
             </svg>
         </button>
         <ul class="admin-menu">
-            <li><p></p></li>
+            <li><span th:text="'Hello: '+ ${session.admin.name}"></span></li>
             <li><a href="/logout">Thoát</a></li>
             <li class="menu-heading">
                 <h3>Admin</h3>

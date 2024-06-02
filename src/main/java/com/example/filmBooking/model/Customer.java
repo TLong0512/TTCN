@@ -41,7 +41,8 @@ public class Customer {
     @NotEmpty(message = "Họ tên không được để trống")
     @Column(name = "name")
     private String name;
-
+    @Column(name = "role")
+    private String role;
     @ManyToOne
     @JoinColumn(name = "rankCustomer_id")
     private RankCustomer rankCustomer;

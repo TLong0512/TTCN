@@ -43,7 +43,8 @@ public class HomeController {
         return "admin/login";
     }
     @GetMapping("/logout")
-    public  String logout(){
+    public  String logout(HttpSession session){
+        session.removeAttribute("admin");
         return "admin/login";
     }
     @PostMapping("/check")
@@ -66,6 +67,12 @@ public class HomeController {
             @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
                        @RequestParam(value = "endDate", required = false)
             @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate, HttpSession session ) {
+
+        if(session.getAttribute("admin") == null)
+        {
+            return "redirect:/admin/login";
+        }
+
         List<BigDecimal> thanhXuan = statisticsService.revenueInTheLast7DaysThanhXuan();
         List<BigDecimal> mipec = statisticsService.revenueInTheLast7DaysMipec();
         List<BigDecimal> myDinh = statisticsService.revenueInTheLast7DaysMyDinh();
