@@ -205,8 +205,8 @@ public class VNPAYController {
         Date currentTime = new Date();
 
         String email = customer.getEmail();
-        final String username = "longnguyenthanh28.08@gmail.com";
-        final String password = "123456789"; // Replace <your-password> with your actual password
+        final String username = gmail;
+        final String password = "mjqpjajkmzzpdoqs"; // Replace <your-password> with your actual password
 
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
@@ -222,7 +222,7 @@ public class VNPAYController {
 
         try {
             Message message = new MimeMessage(session2);
-            message.setFrom(new InternetAddress("longnguyenthanh28.08@gmail.com"));
+            message.setFrom(new InternetAddress(gmail));
 
             // Populate multiple recipients
             String[] recipients = {email}; // Replace with actual recipient emails
@@ -297,7 +297,7 @@ public class VNPAYController {
         model.addAttribute("customer", customer);
         String transactionCode = generateTransactionCode();
         BigDecimal orderTotalDecimal = new BigDecimal(orderTotal);
-        String thongtin = "Giao dịch được thực hiện tại Web FimlBooking";
+        String thongtin = "Giao dịch được thực hiện tại Web Fantafilm";
         Locale localeVN = new Locale("vi", "VN");
         NumberFormat currencyVN = NumberFormat.getCurrencyInstance(localeVN);
         String formattedPriceVN = currencyVN.format(orderTotal);
@@ -398,7 +398,7 @@ public class VNPAYController {
 
         String email = customer.getEmail();
         final String username = "longnguyenthanh28.08@gmail.com";
-        final String password = "vtzo bcyi iefk qtvj"; // Replace <your-password> with your actual password
+        final String password = "mjqpjajkmzzpdoqs"; // Replace <your-password> with your actual password
 
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
@@ -464,7 +464,7 @@ public class VNPAYController {
             emailContent1.append("Email : ").append(customer.getEmail()).append("\n");
             emailContent1.append("Mã giao dịch : ").append(transactionCode).append("\n");
             emailContent1.append("Đơn hàng thanh toán lúc: ").append(LocalDateTime.now()).append("\n");
-            emailContent1.append("Xác nhận đơn hàng:  ").append("http://localhost:8080/bill/detail/").append(bill.getId());
+            emailContent1.append("Xác nhận đơn hàng:  ").append("http://localhost:1111/bill/detail/").append(bill.getId());
             message2.setText(emailContent1.toString());
             Transport.send(message2);
         } catch (
