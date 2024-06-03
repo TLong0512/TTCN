@@ -232,8 +232,8 @@
                         <span>Ngày kết thúc:</span>
                         <span class="card-text" th:text="${#dates.format(movie.endDate, 'dd/MM/yyyy')}"></span>
                         <p class="card-text">Trạng thái: [[${movie.status}]]</p>
-                        <div class="row">
-                            <div class="col-xl-4">
+                        <div class="row" style="margin-left: 2rem;">
+                            <div style="margin-right: 0.5rem" class="col-xl-4">
                                 <a th:href="@{'/movie/update/'+${currentPage} +'/' + ${movie.id}}">
                                     <button
                                             type="button"
@@ -244,16 +244,16 @@
                                     </button>
                                 </a>
                             </div>
-                            <div class="col-xl-4">
-                                <a th:href="@{'/movie/detail/' + ${movie.id}}" onclick="overLoad()">
-                                    <button
-                                            type="button"
-                                            class="btn btn-outline-primary"
-                                    >
-                                        <i class="bx bx-show-alt"></i></button
-                                    >
-                                </a>
-                            </div>
+<!--                            <div class="col-xl-4">-->
+<!--                                <a th:href="@{'/movie/detail/' + ${movie.id}}" onclick="overLoad()">-->
+<!--                                    <button-->
+<!--                                            type="button"-->
+<!--                                            class="btn btn-outline-primary"-->
+<!--                                    >-->
+<!--                                        <i class="bx bx-show-alt"></i></button-->
+<!--                                    >-->
+<!--                                </a>-->
+<!--                            </div>-->
                             <div class="col-xl-4">
                                 <a th:href="@{'/movie/delete/' + ${movie.id}}">
                                     <button

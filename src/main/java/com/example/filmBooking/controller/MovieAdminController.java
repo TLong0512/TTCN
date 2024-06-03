@@ -156,6 +156,55 @@ public class MovieAdminController {
         }
     }
 
+    @PostMapping("/update")
+    @Operation(summary = "[Thêm mới]")
+    public String update(Model model,
+                       @RequestParam(name = "id") String id,
+                       @RequestParam(name = "name") String name,
+                       @RequestParam(name = "movieType") List<MovieType> movieTypes,
+                       @RequestParam(name = "language") List<Language> languages,
+                       @RequestParam(name = "trailer") String trailer,
+                       @RequestParam(name = "performer") List<Performer> performers,
+                       @RequestParam(name = "description") String description,
+                       @RequestParam(name = "endDate") Date endDate,
+                       @RequestParam(name = "premiereDate") Date premiereDate,
+                       @RequestParam(name = "directors") List<Director> directors,
+                       @RequestParam(name = "image") MultipartFile multipartFile,
+                       @RequestParam(name = "movieDuration") Integer movieDuration,
+                       @RequestParam(name = "ratedId") Rated rated
+    )
+    {
+        uploadImage.handerUpLoadFile(multipartFile);
+        try {
+            Movie movie = Movie.builder()
+                    .id(id)
+                    .movieDuration(movieDuration)
+                    .name(name)
+                    .description(description)
+                    .trailer(trailer)
+                    .endDate(endDate)
+                    .premiereDate(premiereDate)
+                    .image(multipartFile.getOriginalFilename())
+                    .rated(rated)
+                    .directors(directors)
+                    .movieTypes(movieTypes)
+                    .languages(languages)
+                    .performers(performers)
+                    .build();
+
+            if (service.save(movie) instanceof Movie) {
+                model.addAttribute("thanhCong", "Thêm thành công!");
+            } else {
+                model.addAttribute("thatBai", "Thêm thất bại");
+            }
+            model.addAttribute("movie", new Movie());
+            return "redirect:/movie/find-all/page/1?status=&keyword=";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "admin/movie";
+        }
+    }
+
     @GetMapping("/delete/{id}")
     public String deleteMovie(@PathVariable(name = "id") String id, RedirectAttributes ra) {
         try {
@@ -190,21 +239,11 @@ public class MovieAdminController {
         model.addAttribute("performers", performerId);
         model.addAttribute("languageSelect", languageSelector);
 //        model.addAttribute("movie", new Movie());
-        model.addAttribute("movie", service.findById(id));
-        return "admin/form-add-movie";
+        Movie movie = service.findById(id);
+        model.addAttribute("id",id);
+        model.addAttribute("movie", movie);
+        return "admin/form-update-movie";
     }
-
-    //    @GetMapping("/search-movie/{pageNumber}")
-//    public String searchMovie(Model model, @RequestParam(name = "keyword") String keyword, @PathVariable("pageNumber") Integer currentPage) {
-//        Page<Movie> page = service.searchMovie(keyword, currentPage);
-//        model.addAttribute("keyword", keyword);
-//        model.addAttribute("currentPage", currentPage);
-//        model.addAttribute("totalPages", page.getTotalPages());
-//        model.addAttribute("totalItems", page.getTotalElements());
-//        model.addAttribute("listMovie", page.getContent());
-//        model.addAttribute("movie", new Movie());
-//        return "admin/movie";
-//    }
     @GetMapping("/checkDuplicateName")
     public ResponseEntity<Map<String, Boolean>> checkDuplicateName(@RequestParam("name") String name) {
         boolean isDuplicate = service.findByName(name) != null;
