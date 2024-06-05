@@ -97,11 +97,15 @@
                                 </div>
                             </div>
                             <div class="movie-schedule" onclick="displayData(this)">
-                                <div class="item" th:each="start_at : ${listTime}">
-                                    <span id="time">[[${start_at[0]}]]</span>
-                                    <span id="room" style="display: none;">[[${start_at[1]}]]</span>
-                                </div>
-                            </div>
+                               <div th:each="start_at : ${listTime}">
+                                   <div class="item" th:if="${start_at[1] == date}">
+                                           <span id="time" th:text="${start_at[0]}"></span>
+                                           <span id="room" style="display: none;" th:text="${start_at[2]}"></span>
+                                   </div>
+                                   </div>
+                               </div>
+
+
                         </li>                        
                     </ul>
                 </div>

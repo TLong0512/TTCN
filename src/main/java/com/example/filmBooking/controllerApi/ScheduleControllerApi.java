@@ -65,7 +65,6 @@ public class ScheduleControllerApi {
                 String[].class,
                 listRequestParam);
         List<String> listStartAt = Arrays.asList(listStartAtEntity.getBody());
-//        System.out.println(listStartAt);
         if (listStartAt.isEmpty()){
             ra.addFlashAttribute("Message", "Rạp đang không có ngày chiếu nào");
             return "redirect:/show/cinema?movieId=" +movieId+ "&cinemaId=" +cinemaId;
@@ -85,7 +84,6 @@ public class ScheduleControllerApi {
             listRequestParam.put("start_at", ngay + "");
 
             break;
-//                continue;
         }
         ResponseEntity<Object[]> listStartTimesEntity = restTemplate.exchange(
                 urlTemplateTime,
@@ -93,9 +91,10 @@ public class ScheduleControllerApi {
                 entity,
                 Object[].class,
                 listRequestParam);
+
         List<Object> listTime = Arrays.asList(listStartTimesEntity.getBody());
         model.addAttribute("listTime", listTime);
-
+        System.out.println(listTime);
         String urlTemplate1 = UriComponentsBuilder.fromHttpUrl(apiGetCinema)
                 .queryParam("movieId", "{movieId}")
                 .queryParam("cinemaId", "{cinemaId}")

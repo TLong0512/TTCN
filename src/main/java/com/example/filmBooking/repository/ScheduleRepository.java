@@ -24,7 +24,7 @@ public interface ScheduleRepository extends JpaRepository<Schedule, String> {
     List<String> getstartAtAndFinishAt(@Param("movieId") String movieId, @Param("cinemaId") String cinemaId);
 
     //   lấy ra thời gian
-    String time = ("\n" + "\tselect distinct   DATE_FORMAT(s.start_at , '%H:%i'), r.name, s.price\n"
+    String time = ("\n" + "\tselect distinct   DATE_FORMAT(s.start_at , '%H:%i'),DATE(s.start_at), r.name, s.price\n"
             + "\tfrom datn.cinema c\n"
             + "\tjoin datn.room r on r.cinema_id = c.id\n"
             + "\tjoin datn.schedule s on s.room_id = r.id\n"

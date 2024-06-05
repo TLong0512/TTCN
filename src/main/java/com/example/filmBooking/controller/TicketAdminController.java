@@ -58,9 +58,6 @@ public class TicketAdminController {
         model.addAttribute("totalItems", page.getTotalElements());
         model.addAttribute("listTicket", page.getContent());
         List<String> scheduleName = scheduleService.listSchedule();
-//        System.out.println(page.getContent().size()+"hihi");
-//        System.out.println(status+"hehe");
-//        List<Room> roomList= roomService.
         model.addAttribute("scheduleNames", scheduleName);
         return "admin/ticket";
     }
