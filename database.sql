@@ -1,5 +1,5 @@
-create database ttcn;
-use ttcn;
+create database datn;
+use datn;
 CREATE TABLE `seat_type` (
   `surcharge` int DEFAULT NULL,
   `code` varchar(255) DEFAULT NULL,
